@@ -1,0 +1,9 @@
+/*외부 호출시 begin()/end() 로 레지스트리 이용 래핑*/
+try {
+    ThreadLocalRegistry.begin();
+    PersonFinder f1 = ThreadLocalRegistry.personFinder();
+    Person martin = f1.find(1);
+    assertEquals("Fowler", martin.getLastName());
+} finally {
+    ThreadLocalRegistry.end();
+}
